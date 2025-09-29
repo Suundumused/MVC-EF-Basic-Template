@@ -1,0 +1,57 @@
+﻿@using Microsoft.AspNetCore.Mvc.ModelBinding
+
+@using TutorialEntityFramework.Entities
+@model TutorialEntityFramework.Entities.Category
+
+@inject IModelMetadataProvider metadataProvider
+@{
+
+    ViewData["Title"] = ViewBag.Category;
+
+    @functions 
+    {
+        private string? GetPropertyName(string title)
+        {
+            var metadata = metadataProvider.GetMetadataForProperty(typeof(Product), "Name");
+            return metadata.DisplayName ?? metadata.PropertyName;
+        }
+    }
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewBag.Category Products</h1>
+    <p></p>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.Id)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.Name)</th>
+            <th scope="col">@GetPropertyName("Price")</th>
+            <th scope="col">@GetPropertyName("Category")</th>
+            <th scope="col">@GetPropertyName("Description")</th>
+            <th><a asp-action="Create">New Product</a></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model is not null)
+        {
+            @foreach (Product product in Model.Products)
+            {
+                <tr>
+                    <td>@product.Id</td>
+                    <td>@product.Name</td>
+                    <td>@product.Price</td>
+                    <td>@product.Category?.Name</td>
+                    <td>@product.Description</td>
+                    <td>
+                        <a class="class=" btn btn-sm btn-info" href="/Data/Products/Details/@product.Id">Info</a>
+                        <a class="class=" btn btn-sm btn-warning" href="/Data/Products/Edit/@product.Id">Edit</a>
+                        <a class="class=" btn btn-sm btn-danger" href="/Data/Products/Delete/@product.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

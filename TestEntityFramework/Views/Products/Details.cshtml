@@ -1,0 +1,31 @@
+﻿@model TutorialEntityFramework.Entities.Product
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.Id)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.Name)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.Price)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.Category)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.Description)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.Id</td>
+            <td>@Model.Name</td>
+            <td>@Model.Price</td>
+            <td>@Model.Category?.Name</td>
+            <td>@Model.Description</td>
+            <td>
+                <a class="class=" btn btn-sm btn-warning" href="/Data/Products/Edit/@Model.Id">Edit</a>
+                <a class="class=" btn btn-sm btn-danger" href="/Data/Products/Delete/@Model.Id">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

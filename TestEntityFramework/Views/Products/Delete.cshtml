@@ -1,0 +1,23 @@
+﻿@model int
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title">Delete Product</h5>
+        <button type="button" class="btn-close" aria-label="Close">
+            <span aria-hidden="true"></span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>Confirm Removal.</p>
+    </div>
+    <div class="modal-footer">
+        <form asp-action="Delete" >
+            <input type="submit" value="Yes" class="btn btn-primary"/>
+            <a type="button" class="btn btn-secondary" asp-area="" asp-controller="Data" asp-action="Products">No</a>
+        </form>
+    </div>
+</div>

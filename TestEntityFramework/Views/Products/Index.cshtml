@@ -1,0 +1,41 @@
+﻿@using TutorialEntityFramework.Entities
+@model IEnumerable<Product>
+
+@{
+    ViewData["Title"] = typeof(Product).Name;
+}
+
+<div class="text-center">
+    <h1 class="display-4">Products</h1>
+    <p></p>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.Id)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.Name)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.Price)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.Category)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.Description)</th>
+            <th><a asp-action="Create">New Product</a></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Product product in Model)
+        {
+            <tr>
+                <td>@product.Id</td>
+                <td>@product.Name</td>
+                <td>@product.Price</td>
+                <td>@product.Category?.Name</td>
+                <td>@product.Description</td>
+                <td>
+                    <a class="class=" btn btn-sm btn-info" href="/Data/Products/Details/@product.Id">Info</a>
+                    <a class="class=" btn btn-sm btn-warning" href="/Data/Products/Edit/@product.Id">Edit</a>
+                    <a class="class=" btn btn-sm btn-danger" href="/Data/Products/Delete/@product.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
